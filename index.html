@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="An interactive three-year ROI calculator for contact-center cost savings."
+    />
+    <title>ROI Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="calculator" aria-labelledby="page-title">
+        <div class="controls-panel">
+          <div class="heading-group">
+            <p class="eyebrow">Business impact estimator</p>
+            <h1 id="page-title">ROI Calculator</h1>
+            <p class="intro">
+              Adjust your contact-center inputs to estimate potential savings over three years.
+            </p>
+          </div>
+
+          <div class="controls" aria-label="ROI assumptions">
+            <div class="control" data-control="call-volume">
+              <div class="control-header">
+                <label for="call-volume-number">Annual call volume</label>
+                <div class="input-wrap">
+                  <input
+                    id="call-volume-number"
+                    class="number-input"
+                    type="number"
+                    min="100000"
+                    max="10000000"
+                    step="100000"
+                    value="5000000"
+                    inputmode="numeric"
+                  />
+                  <span class="input-suffix" aria-hidden="true">calls</span>
+                </div>
+              </div>
+              <input
+                id="call-volume-range"
+                class="range-input"
+                type="range"
+                min="100000"
+                max="10000000"
+                step="100000"
+                value="5000000"
+                aria-label="Annual call volume slider"
+              />
+              <div class="range-labels" aria-hidden="true">
+                <span>100K</span><span>10M</span>
+              </div>
+            </div>
+
+            <div class="control" data-control="cost-per-call">
+              <div class="control-header">
+                <label for="cost-per-call-number">Cost per call</label>
+                <div class="input-wrap input-wrap--currency">
+                  <span class="input-prefix" aria-hidden="true">$</span>
+                  <input
+                    id="cost-per-call-number"
+                    class="number-input"
+                    type="number"
+                    min="0.5"
+                    max="20"
+                    step="0.25"
+                    value="4.5"
+                    inputmode="decimal"
+                  />
+                </div>
+              </div>
+              <input
+                id="cost-per-call-range"
+                class="range-input"
+                type="range"
+                min="0.5"
+                max="20"
+                step="0.25"
+                value="4.5"
+                aria-label="Cost per call slider"
+              />
+              <div class="range-labels" aria-hidden="true">
+                <span>$0.50</span><span>$20</span>
+              </div>
+            </div>
+
+            <div class="control" data-control="resolution-rate">
+              <div class="control-header">
+                <label for="resolution-rate-number">First contact resolution</label>
+                <div class="input-wrap">
+                  <input
+                    id="resolution-rate-number"
+                    class="number-input"
+                    type="number"
+                    min="20"
+                    max="100"
+                    step="1"
+                    value="70"
+                    inputmode="numeric"
+                  />
+                  <span class="input-suffix" aria-hidden="true">%</span>
+                </div>
+              </div>
+              <input
+                id="resolution-rate-range"
+                class="range-input"
+                type="range"
+                min="20"
+                max="100"
+                step="1"
+                value="70"
+                aria-label="First contact resolution slider"
+              />
+              <div class="range-labels" aria-hidden="true">
+                <span>20%</span><span>100%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-panel" aria-live="polite">
+          <div class="total-card">
+            <p class="total-label">Estimated total benefit</p>
+            <p class="total-value" id="total-benefit">$13.75M</p>
+            <p class="total-period">Projected across 3 years</p>
+          </div>
+
+          <div class="chart" id="benefit-chart" aria-label="Projected cost savings by year">
+            <div class="chart-grid" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="bars">
+              <div class="bar-column">
+                <span class="bar-value" id="year-1-value">$854K</span>
+                <div class="bar-track">
+                  <div class="bar" id="year-1-bar"></div>
+                </div>
+                <span class="bar-label">Year 1</span>
+              </div>
+              <div class="bar-column">
+                <span class="bar-value" id="year-2-value">$4.17M</span>
+                <div class="bar-track">
+                  <div class="bar" id="year-2-bar"></div>
+                </div>
+                <span class="bar-label">Year 2</span>
+              </div>
+              <div class="bar-column">
+                <span class="bar-value" id="year-3-value">$8.73M</span>
+                <div class="bar-track">
+                  <div class="bar" id="year-3-bar"></div>
+                </div>
+                <span class="bar-label">Year 3</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="legend"><span class="legend-dot"></span>Projected cost savings</div>
+          <p class="method-note">
+            Estimate based on annual call cost, resolution rate, and phased adoption assumptions.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
